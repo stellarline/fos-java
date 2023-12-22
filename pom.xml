@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>fos-java-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>client-core</module>
+        <module>client-starter</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.boot.version>3.2.0</spring.boot.version>
+        <forest.version>1.5.35</forest.version>
+        <jackson.version>2.9.10</jackson.version>
+        <fastjson.version>1.2.73</fastjson.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <name>Maven Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-dependency</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dtflys.forest</groupId>
+                <artifactId>forest-core</artifactId>
+                <version>${forest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dtflys.forest</groupId>
+                <artifactId>forest-jaxb</artifactId>
+                <version>${forest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>3.18.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>
