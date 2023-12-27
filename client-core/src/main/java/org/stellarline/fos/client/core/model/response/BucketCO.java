@@ -1,4 +1,4 @@
-package org.stellarline.fos.client.core.response;
+package org.stellarline.fos.client.core.model.response;
 
 import com.alibaba.cola.dto.ClientObject;
 import lombok.Data;

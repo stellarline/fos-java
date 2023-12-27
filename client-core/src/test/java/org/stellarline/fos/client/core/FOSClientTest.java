@@ -7,9 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.stellarline.fos.client.core.response.BucketCO;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.stellarline.fos.client.core.model.response.BucketCO;
 
 /**
  * @author leanderlee

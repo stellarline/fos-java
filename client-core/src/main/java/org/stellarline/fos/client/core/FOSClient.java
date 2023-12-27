@@ -4,20 +4,30 @@ import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.dtflys.forest.Forest;
 import com.dtflys.forest.config.ForestConfiguration;
-import org.stellarline.fos.client.core.request.BucketCreateReq;
-import org.stellarline.fos.client.core.response.BucketCO;
+import org.stellarline.fos.client.core.api.FOSBucketClient;
+import org.stellarline.fos.client.core.api.FOSObjectClient;
+import org.stellarline.fos.client.core.api.FOSPresignedClient;
+import org.stellarline.fos.client.core.model.PageResp;
+import org.stellarline.fos.client.core.model.request.BucketCreateReq;
+import org.stellarline.fos.client.core.model.request.BucketListQry;
+import org.stellarline.fos.client.core.model.response.BucketCO;
+import org.stellarline.fos.client.core.rest.BucketRestClient;
+import org.stellarline.fos.client.core.rest.ObjectRestClient;
+import org.stellarline.fos.client.core.rest.PresignedRestClient;
 import org.stellarline.fos.client.core.utils.HttpUtils;
 
 /**
  * @author leanderlee
  * @since 1.0.0
  */
-public class FOSClient implements FOSClientInterface {
+public class FOSClient implements FOSBucketClient, FOSObjectClient, FOSPresignedClient {
     final static public String CONF_SERVER_URL = "serverUrl";
     final static public String CONF_ACCESS_KEY = "accessKey";
     final static public String CONF_ACCESS_SECRET = "accessSecret";
 
-    final private FOSRestClient restClient;
+    final private BucketRestClient bucketRestClient;
+    final private ObjectRestClient objectRestClient;
+    final private PresignedRestClient presignedRestClient;
 
     FOSClient(FOSClientBuilder builder) {
         // validate server url
@@ -30,19 +40,20 @@ public class FOSClient implements FOSClientInterface {
         configuration.setVariableValue(CONF_ACCESS_KEY, builder.getAccessKey());
         configuration.setVariableValue(CONF_ACCESS_SECRET, builder.getAccessSecret());
 
-        restClient = Forest.client(FOSRestClient.class);
+        bucketRestClient = Forest.client(BucketRestClient.class);
+        objectRestClient = Forest.client(ObjectRestClient.class);
+        presignedRestClient = Forest.client(PresignedRestClient.class);
     }
 
     @Override
-    public PageResponse<BucketCO> listBuckets(String bucketName) {
-        return restClient.listBuckets(bucketName);
+    public PageResp<BucketCO> listBuckets(BucketListQry qry) {
+        PageResponse<BucketCO> response = bucketRestClient.listBuckets(
+                qry.getBucketName(), qry.getPageIndex(), qry.getPageSize(), qry.getOrderBy(), qry.getOrderDirection());
+        return PageResp.of(response.getData(), response.getTotalCount(), response.getPageSize(), response.getPageIndex());
     }
 
     @Override
     public Response createBucket(BucketCreateReq req) {
-        return restClient.createBucket(req);
+        return bucketRestClient.createBucket(req);
     }
-
-
-
 }

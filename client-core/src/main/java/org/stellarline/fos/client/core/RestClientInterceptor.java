@@ -1,6 +1,5 @@
 package org.stellarline.fos.client.core;
 
-import com.alibaba.fastjson.JSON;
 import com.dtflys.forest.http.ForestRequest;
 import com.dtflys.forest.http.ForestResponse;
 import com.dtflys.forest.interceptor.Interceptor;
@@ -15,8 +14,11 @@ public class RestClientInterceptor implements Interceptor {
 
     @Override
     public boolean beforeExecute(ForestRequest request) {
-        request.addHeader("X-Access-Key", "${accessKey}");
-        request.addHeader("X-Access-Secret", "${accessSecret}");
         return Interceptor.super.beforeExecute(request);
+    }
+
+    @Override
+    public void onSuccess(Object data, ForestRequest request, ForestResponse response) {
+        Interceptor.super.onSuccess(data, request, response);
     }
 }

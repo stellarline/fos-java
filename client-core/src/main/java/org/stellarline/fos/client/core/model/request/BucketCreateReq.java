@@ -1,4 +1,4 @@
-package org.stellarline.fos.client.core.request;
+package org.stellarline.fos.client.core.model.request;
 
 import com.alibaba.cola.dto.Command;
 import jakarta.validation.constraints.NotBlank;
