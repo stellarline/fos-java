@@ -23,8 +23,8 @@ public class FOSClientBuilder {
         return this;
     }
 
-    public FOSClientBuilder setAccessSecret(String secret) {
-        this.accessSecret = accessKey;
+    public FOSClientBuilder setAccessSecret(String accessSecret) {
+        this.accessSecret = accessSecret;
         return this;
     }
 

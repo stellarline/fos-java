@@ -19,8 +19,8 @@ public class BucketCreateReq extends Command {
     @NotBlank
     private String bucketName;
 
-    private String encryptionType;
-
     @Size(min = 10)
     private Integer quotaSize;
+
+    private String encryptionType;
 }

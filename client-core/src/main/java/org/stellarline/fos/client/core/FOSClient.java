@@ -4,10 +4,9 @@ import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
 import com.dtflys.forest.Forest;
 import com.dtflys.forest.config.ForestConfiguration;
-import org.stellarline.fos.client.core.api.FOSBucketClient;
-import org.stellarline.fos.client.core.api.FOSObjectClient;
-import org.stellarline.fos.client.core.api.FOSPresignedClient;
-import org.stellarline.fos.client.core.model.PageResp;
+import org.stellarline.fos.client.core.api.BucketClient;
+import org.stellarline.fos.client.core.api.ObjectClient;
+import org.stellarline.fos.client.core.api.PresignedClient;
 import org.stellarline.fos.client.core.model.request.BucketCreateReq;
 import org.stellarline.fos.client.core.model.request.BucketListQry;
 import org.stellarline.fos.client.core.model.response.BucketCO;
@@ -20,7 +19,7 @@ import org.stellarline.fos.client.core.utils.HttpUtils;
  * @author leanderlee
  * @since 1.0.0
  */
-public class FOSClient implements FOSBucketClient, FOSObjectClient, FOSPresignedClient {
+public class FOSClient implements BucketClient, ObjectClient, PresignedClient {
     final static public String CONF_SERVER_URL = "serverUrl";
     final static public String CONF_ACCESS_KEY = "accessKey";
     final static public String CONF_ACCESS_SECRET = "accessSecret";
@@ -46,10 +45,8 @@ public class FOSClient implements FOSBucketClient, FOSObjectClient, FOSPresigned
     }
 
     @Override
-    public PageResp<BucketCO> listBuckets(BucketListQry qry) {
-        PageResponse<BucketCO> response = bucketRestClient.listBuckets(
-                qry.getBucketName(), qry.getPageIndex(), qry.getPageSize(), qry.getOrderBy(), qry.getOrderDirection());
-        return PageResp.of(response.getData(), response.getTotalCount(), response.getPageSize(), response.getPageIndex());
+    public PageResponse<BucketCO> listBuckets(BucketListQry qry) {
+        return bucketRestClient.listBuckets(qry);
     }
 
     @Override

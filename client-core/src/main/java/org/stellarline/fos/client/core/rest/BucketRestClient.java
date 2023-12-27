@@ -6,6 +6,7 @@ import com.alibaba.cola.dto.SingleResponse;
 import com.dtflys.forest.annotation.*;
 import org.stellarline.fos.client.core.RestClientInterceptor;
 import org.stellarline.fos.client.core.model.request.BucketCreateReq;
+import org.stellarline.fos.client.core.model.request.BucketListQry;
 import org.stellarline.fos.client.core.model.response.BucketCO;
 
 /**
@@ -23,11 +24,7 @@ import org.stellarline.fos.client.core.model.response.BucketCO;
 public interface BucketRestClient {
 
     @Get(value = "/listBuckets")
-    PageResponse<BucketCO> listBuckets(@Query("bucketName") String bucketName,
-                                       @Query("pageIndex") Integer pageIndex,
-                                       @Query("pageSize") Integer pageSize,
-                                       @Query("orderBy") String orderBy,
-                                       @Query("orderDirection") String orderDirection);
+    PageResponse<BucketCO> listBuckets(@Query BucketListQry qry);
 
     @Post(value = "/createBucket")
     Response createBucket(@JSONBody BucketCreateReq req);

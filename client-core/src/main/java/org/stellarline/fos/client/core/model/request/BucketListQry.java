@@ -1,9 +1,9 @@
 package org.stellarline.fos.client.core.model.request;
 
+import com.alibaba.cola.dto.PageQuery;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
-import org.stellarline.fos.client.core.model.PageReq;
 
 /**
  * @author leanderlee
@@ -11,8 +11,8 @@ import org.stellarline.fos.client.core.model.PageReq;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@SuperBuilder(toBuilder = true)
-public class BucketListQry extends PageReq {
+@Builder
+public class BucketListQry extends PageQuery {
 
     private String bucketName;
 }
