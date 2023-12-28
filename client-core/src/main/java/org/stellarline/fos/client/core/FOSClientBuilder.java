@@ -10,8 +10,14 @@ import lombok.Getter;
 public class FOSClientBuilder {
 
     private String serverUrl;
+
     private String accessKey;
+
     private String accessSecret;
+
+    private Integer connectionTimeout = 10;
+
+    private Boolean logEnabled = true;
 
     public FOSClientBuilder setServerUrl(String serverUrl) {
         this.serverUrl = serverUrl;
@@ -25,6 +31,16 @@ public class FOSClientBuilder {
 
     public FOSClientBuilder setAccessSecret(String accessSecret) {
         this.accessSecret = accessSecret;
+        return this;
+    }
+
+    public FOSClientBuilder setConnectionTimeout(Integer connectionTimeout) {
+        this.connectionTimeout = connectionTimeout;
+        return this;
+    }
+
+    public FOSClientBuilder setLogEnabled(Boolean logEnabled) {
+        this.logEnabled = logEnabled;
         return this;
     }
 

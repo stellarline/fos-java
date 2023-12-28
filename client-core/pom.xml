@@ -8,7 +8,7 @@
         <artifactId>fos-java-client</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
+    <packaging>jar</packaging>
     <artifactId>fos-client-core</artifactId>
 
     <properties>

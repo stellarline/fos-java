@@ -1,9 +1,11 @@
 package org.stellarline.fos.client.core.model.request;
 
 import com.alibaba.cola.dto.Command;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author leanderlee
@@ -11,16 +13,13 @@ import lombok.*;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
-public class BucketCreateReq extends Command {
+@Builder
+public class ObjectRemoveReq extends Command {
 
     @NotBlank
     private String bucketName;
 
-    @Min(10)
-    private Integer quotaSize;
-
-    private String encryptionType;
+    @NotBlank
+    private String objectPath;
 }
